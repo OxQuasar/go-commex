@@ -103,7 +103,7 @@ type AccountType string
 
 // Endpoints
 const (
-	baseAPIMainURL    = "https://api.binance.com"
+	baseAPIMainURL    = "https://api.binance.us"
 	baseAPITestnetURL = "https://testnet.binance.vision"
 )
 
@@ -266,7 +266,7 @@ func getAPIEndpoint() string {
 // NewClient initialize an API client instance with API key and secret key.
 // You should always call this function before using this SDK.
 // Services will be created by the form client.NewXXXService().
-func NewClient(apiKey, secretKey string) *Client {
+func NewClient(apiKey, secretKey string, debug bool) *Client {
 	return &Client{
 		APIKey:     apiKey,
 		SecretKey:  secretKey,
@@ -274,11 +274,12 @@ func NewClient(apiKey, secretKey string) *Client {
 		UserAgent:  "Binance/golang",
 		HTTPClient: http.DefaultClient,
 		Logger:     log.New(os.Stderr, "Binance-golang ", log.LstdFlags),
+		Debug:      debug,
 	}
 }
 
 // NewProxiedClient passing a proxy url
-func NewProxiedClient(apiKey, secretKey, proxyUrl string) *Client {
+func NewProxiedClient(apiKey, secretKey, proxyUrl string, debug bool) *Client {
 	proxy, err := url.Parse(proxyUrl)
 	if err != nil {
 		log.Fatal(err)
@@ -296,6 +297,7 @@ func NewProxiedClient(apiKey, secretKey, proxyUrl string) *Client {
 			Transport: tr,
 		},
 		Logger: log.New(os.Stderr, "Binance-golang ", log.LstdFlags),
+		Debug:  debug,
 	}
 }
 
