@@ -1,4 +1,4 @@
-module github.com/oxquasar/go-binanceus/v2
+module github.com/oxquasar/go-commex/v2
 
 go 1.18
 
