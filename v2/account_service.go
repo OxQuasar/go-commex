@@ -14,7 +14,7 @@ type GetAccountService struct {
 func (s *GetAccountService) Do(ctx context.Context, opts ...RequestOption) (res *Account, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/account",
+		endpoint: "/api/v1/account",
 		secType:  secTypeSigned,
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)

@@ -56,7 +56,7 @@ func (s *ListTradesService) OrderId(OrderId int64) *ListTradesService {
 func (s *ListTradesService) Do(ctx context.Context, opts ...RequestOption) (res []*TradeV3, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/myTrades",
+		endpoint: "/api/v1/myTrades",
 		secType:  secTypeSigned,
 	}
 	r.setParam("symbol", s.symbol)
@@ -117,7 +117,7 @@ func (s *HistoricalTradesService) FromID(fromID int64) *HistoricalTradesService 
 func (s *HistoricalTradesService) Do(ctx context.Context, opts ...RequestOption) (res []*Trade, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/historicalTrades",
+		endpoint: "/api/v1/historicalTrades",
 		secType:  secTypeAPIKey,
 	}
 	r.setParam("symbol", s.symbol)
@@ -214,7 +214,7 @@ func (s *AggTradesService) Limit(limit int) *AggTradesService {
 func (s *AggTradesService) Do(ctx context.Context, opts ...RequestOption) (res []*AggTrade, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/aggTrades",
+		endpoint: "/api/v1/aggTrades",
 	}
 	r.setParam("symbol", s.symbol)
 	if s.fromID != nil {

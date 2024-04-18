@@ -37,7 +37,7 @@ func (s *ExchangeInfoService) Permissions(permissions ...string) *ExchangeInfoSe
 func (s *ExchangeInfoService) Do(ctx context.Context, opts ...RequestOption) (res *ExchangeInfo, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/exchangeInfo",
+		endpoint: "/api/v1/exchangeInfo",
 		secType:  secTypeNone,
 	}
 	m := params{}

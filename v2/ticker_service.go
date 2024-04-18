@@ -23,7 +23,7 @@ func (s *ListBookTickersService) Symbol(symbol string) *ListBookTickersService {
 func (s *ListBookTickersService) Do(ctx context.Context, opts ...RequestOption) (res []*BookTicker, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/ticker/bookTicker",
+		endpoint: "/api/v1/ticker/bookTicker",
 	}
 	if s.symbol != nil {
 		r.setParam("symbol", *s.symbol)
@@ -67,7 +67,7 @@ func (s *ListPricesService) Symbol(symbol string) *ListPricesService {
 func (s *ListPricesService) Do(ctx context.Context, opts ...RequestOption) (res []*SymbolPrice, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/ticker/price",
+		endpoint: "/api/v1/ticker/price",
 	}
 	if s.symbol != nil {
 		r.setParam("symbol", *s.symbol)
@@ -123,7 +123,7 @@ func (s *ListPricesService) Symbols(symbols []string) *ListPricesService {
 func (s *ListPriceChangeStatsService) Do(ctx context.Context, opts ...RequestOption) (res []*PriceChangeStats, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/ticker/24hr",
+		endpoint: "/api/v1/ticker/24hr",
 	}
 
 	if s.symbol != nil {
@@ -186,7 +186,7 @@ func (s *AveragePriceService) Symbol(symbol string) *AveragePriceService {
 func (s *AveragePriceService) Do(ctx context.Context, opts ...RequestOption) (res *AvgPrice, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/avgPrice",
+		endpoint: "/api/v1/avgPrice",
 	}
 	r.setParam("symbol", s.symbol)
 	data, err := s.c.callAPI(ctx, r, opts...)
@@ -263,7 +263,7 @@ func (s *ListSymbolTickerService) WindowSize(windowSize string) *ListSymbolTicke
 func (s *ListSymbolTickerService) Do(ctx context.Context, opts ...RequestOption) (res []*SymbolTicker, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/ticker",
+		endpoint: "/api/v1/ticker",
 	}
 	if s.symbol != nil {
 		r.setParam("symbol", *s.symbol)

@@ -14,7 +14,7 @@ type PingService struct {
 func (s *PingService) Do(ctx context.Context, opts ...RequestOption) (err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/ping",
+		endpoint: "/api/v1/ping",
 	}
 	_, err = s.c.callAPI(ctx, r, opts...)
 	return err
@@ -29,7 +29,7 @@ type ServerTimeService struct {
 func (s *ServerTimeService) Do(ctx context.Context, opts ...RequestOption) (serverTime int64, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/time",
+		endpoint: "/api/v1/time",
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {

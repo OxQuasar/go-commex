@@ -15,7 +15,7 @@ func (s *RateLimitService) Do(ctx context.Context, opts ...RequestOption) (res [
 	res = make([]*RateLimitFull, 0)
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/rateLimit/order",
+		endpoint: "/api/v1/rateLimit/order",
 		secType:  secTypeSigned,
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)

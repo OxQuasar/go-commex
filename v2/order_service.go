@@ -143,7 +143,7 @@ func (s *CreateOrderService) createOrder(ctx context.Context, endpoint string, o
 
 // Do send request
 func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res *CreateOrderResponse, err error) {
-	data, err := s.createOrder(ctx, "/api/v3/order", opts...)
+	data, err := s.createOrder(ctx, "/api/v1/order", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,7 +157,7 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 
 // Test send test api to check if the request is valid
 func (s *CreateOrderService) Test(ctx context.Context, opts ...RequestOption) (err error) {
-	_, err = s.createOrder(ctx, "/api/v3/order/test", opts...)
+	_, err = s.createOrder(ctx, "/api/v1/order/test", opts...)
 	return err
 }
 
@@ -337,7 +337,7 @@ func (s *CreateOCOService) createOrder(ctx context.Context, endpoint string, opt
 
 // Do send request
 func (s *CreateOCOService) Do(ctx context.Context, opts ...RequestOption) (res *CreateOCOResponse, err error) {
-	data, err := s.createOrder(ctx, "/api/v3/order/oco", opts...)
+	data, err := s.createOrder(ctx, "/api/v1/order/oco", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -410,7 +410,7 @@ type Oco struct {
 func (s *ListOpenOcoService) Do(ctx context.Context, opts ...RequestOption) (res []*Oco, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/openOrderList ",
+		endpoint: "/api/v1/openOrderList ",
 		secType:  secTypeSigned,
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
@@ -441,7 +441,7 @@ func (s *ListOpenOrdersService) Symbol(symbol string) *ListOpenOrdersService {
 func (s *ListOpenOrdersService) Do(ctx context.Context, opts ...RequestOption) (res []*Order, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/openOrders",
+		endpoint: "/api/v1/openOrders",
 		secType:  secTypeSigned,
 	}
 	if s.symbol != "" {
@@ -489,7 +489,7 @@ func (s *GetOrderService) OrigClientOrderID(origClientOrderID string) *GetOrderS
 func (s *GetOrderService) Do(ctx context.Context, opts ...RequestOption) (res *Order, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/order",
+		endpoint: "/api/v1/order",
 		secType:  secTypeSigned,
 	}
 	r.setParam("symbol", s.symbol)
@@ -578,7 +578,7 @@ func (s *ListOrdersService) Limit(limit int) *ListOrdersService {
 func (s *ListOrdersService) Do(ctx context.Context, opts ...RequestOption) (res []*Order, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/api/v3/allOrders",
+		endpoint: "/api/v1/allOrders",
 		secType:  secTypeSigned,
 	}
 	r.setParam("symbol", s.symbol)
@@ -643,7 +643,7 @@ func (s *CancelOrderService) NewClientOrderID(newClientOrderID string) *CancelOr
 func (s *CancelOrderService) Do(ctx context.Context, opts ...RequestOption) (res *CancelOrderResponse, err error) {
 	r := &request{
 		method:   http.MethodDelete,
-		endpoint: "/api/v3/order",
+		endpoint: "/api/v1/order",
 		secType:  secTypeSigned,
 	}
 	r.setFormParam("symbol", s.symbol)
@@ -705,7 +705,7 @@ func (s *CancelOCOService) NewClientOrderID(newClientOrderID string) *CancelOCOS
 func (s *CancelOCOService) Do(ctx context.Context, opts ...RequestOption) (res *CancelOCOResponse, err error) {
 	r := &request{
 		method:   http.MethodDelete,
-		endpoint: "/api/v3/orderList",
+		endpoint: "/api/v1/orderList",
 		secType:  secTypeSigned,
 	}
 	r.setFormParam("symbol", s.symbol)
@@ -746,7 +746,7 @@ func (s *CancelOpenOrdersService) Symbol(symbol string) *CancelOpenOrdersService
 func (s *CancelOpenOrdersService) Do(ctx context.Context, opts ...RequestOption) (res *CancelOpenOrdersResponse, err error) {
 	r := &request{
 		method:   http.MethodDelete,
-		endpoint: "/api/v3/openOrders",
+		endpoint: "/api/v1/openOrders",
 		secType:  secTypeSigned,
 	}
 	r.setParam("symbol", s.symbol)
